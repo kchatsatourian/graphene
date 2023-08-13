@@ -1,155 +1,124 @@
-"use strict";
+$(document).ready(() => {
+    "use strict";
+    //query = query string i.e. "?title"
+    let query = window.location.search;
+    const home = "vertices-and-edges";
+    if (query.length > 1) {
+        query = query.substring(1);
+        if (!chapters) $("#status-container h1").text("Error! The page does not exist."); else if (chapters.hasOwnProperty(query)) loadContent(query); else loadContent(home);
+    } else loadContent(home);
 
-$(document).ready(function() {
-  //to set dimensions of svg
-  univSvgWidth =
-    ($("nav.navbar-static-top > div.container").outerWidth() * 2) / 3 - 48;
-  univSvgHeight = univSvgWidth * 0.54;
-  if (univSvgWidth < 616) univSvgWidth = 616;
-  if (univSvgHeight < 400) univSvgHeight = 400;
+    renderMathInElement(document.body, {
+        delimiters: [{ left: "$$", right: "$$", display: true }, {
+            left: "$",
+            right: "$",
+            display: false
+        }, { left: "\\(", right: "\\)", display: true }, { left: "\\[", right: "\\]", display: true }],
+        throwOnError: false
+    });
 
-  //query = query string i.e. "?title"
-  var query = window.location.search;
-  var home = "vertices-and-edges";
-  if (query.length > 1) {
-    query = query.substr(1);
-    if (!contentData)
-      $("#status-container h1").text("Error!! The page doesn't exist.");
-    else if (contentData.hasOwnProperty(query)) loadContent(query);
-    else loadContent(home);
-  } else loadContent(home);
+    //chapIndex is used to set scrollTop value of map-list
+    var chapIndex = 0, flag = true;
 
-  //chapIndex is used to set scrollTop value of map-list
-  var chapIndex = 0,
-    flag = true;
-
-  //set map list
-  if (contentData) {
-    for (var chap in contentData) {
-      if (contentData.hasOwnProperty(chap)) {
-        var newEntry = "<li ";
-        if ($("#content-title").text() == contentData[chap]["content-title"]) {
-          newEntry += 'class="current-chap"';
-          flag = false;
+    //set map list
+    if (chapters) {
+        for (const chapter in chapters) {
+            if (chapters.hasOwnProperty(chapter)) {
+                let entry = "<li ";
+                if ($("#content-title").text() === chapters[chapter]["content-title"]) {
+                    entry += "class=\"current-chap\"";
+                    flag = false;
+                }
+                entry += `><a href="?${chapter}">${chapters[chapter]["content-title"]}</a></li>`;
+                $("#map-list ol").append(entry);
+            }
+            if (flag) chapIndex++;
         }
-        newEntry +=
-          '><a href="?' +
-          chap +
-          '">' +
-          contentData[chap]["content-title"] +
-          "</a></li>";
-        $("#map-list ol").append(newEntry);
-      }
-      if (flag) chapIndex++;
-    } //for ends here
-  }
+    }
 
-  //map overlay click events
-  //lightbox is hidden by default
-  $("#map-open").on("click", function(event) {
-    $("#lightbox").toggleClass("hidden");
-    var listHeight =
-      $("#map-overlay").innerHeight() - $("#map-header").outerHeight() - 10;
-    $("#map-list").css("max-height", "" + listHeight + "px");
-    //scroll animation
-    $("#map-list").animate(
-      {
-        scrollTop: $("#map-list li").outerHeight() * chapIndex
-      },
-      500
-    );
-  });
+    const contents = $("#contents-modal");
+    $("#map-open").on("click", event => contents.modal("show"));
+    contents.on("hidden.bs.modal", event => contents.hide());
 
-  $("#map-close").on("click", function() {
-    $("#lightbox").toggleClass("hidden");
-  });
+    // Hide Toggle Content by default
+    $(".toggle-content").each((index, element) => $(element).hide());
 
-  $("#lightbox").on("click", function() {
-    $("#lightbox").toggleClass("hidden");
-  });
+    // Toggle on click
+    $(".toggle-link").click((event) => {
+        $(event.currentTarget)
+            .next(".toggle-content")
+            .slideToggle();
+        if ($(event.currentTarget).hasClass("target-hidden")) $(event.currentTarget).text("Click to Hide"); else $(event.currentTarget).text("Click to Show");
+        $(event.currentTarget).toggleClass("target-hidden");
+    });
 
-  $("#map-overlay").on("click", function(event) {
-    //if click propagates to lightbox, then overlay closes
-    event.stopPropagation();
-  });
-
-  //Hide Toggle Content by default
-  $(".toggle-content").each(function() {
-    $(this).hide();
-  });
-
-  //Toggle on click
-  $(".toggle-link").click(function() {
-    $(this)
-      .next(".toggle-content")
-      .slideToggle();
-    if ($(this).hasClass("target-hidden")) $(this).text("Click to Hide");
-    else $(this).text("Click to Show");
-    $(this).toggleClass("target-hidden");
-  });
-
-  //To resize the theory and app areas to fit them in viewport.
-  resizeContent();
-  $(window).on("resize", resizeContent);
+    // Resizing theory and application areas in order to fit them in viewport.
+    resize();
+    $(window).on("resize", resize);
 });
 
-function resizeContent() {
-  //need to resize map-overlay too
-  if (!$("#lightbox").hasClass("hidden")) {
-    var listHeight =
-      $("#map-overlay").innerHeight() - $("#map-header").outerHeight() - 10;
-    $("#map-list").css("max-height", "" + listHeight + "px");
-  }
+function toggle(element) {
+    if (element.attr("hidden")) {
+        element.removeAttr("hidden");
+    } else {
+        element.attr("hidden", true);
+    }
+}
 
-  //set height of theory-area and app-area
-  var h = $(window).height() - 80;
-  var w = $(window).width();
+// Set height of theory and application areas.
+function resize() {
+    const height = $(window).height() - 80;
+    const width = $(window).width();
 
-  if (w < 992) {
-    $("#theory-area").css("max-height", "");
-    //$('#app-area').css('max-height', '');
-    return;
-  }
-  //if(h<400) return;
-  $("#theory-area").css("max-height", "" + Math.max(h, 450) + "px");
-  //$('#app-area').css('max-height', '' + h + 'px');
+    const theory = $("#theory-area");
+    theory.css("max-height", "");
+    if (width >= 992) {
+        theory.css("max-height", `${Math.max(height, 450)}px`);
+    }
 }
 
 function loadContent(query) {
-  var currentChap = contentData[query];
+    const chapter = chapters[query];
 
-  document.title = currentChap["content-title"] + " - D3 Graph Theory";
+    document.title = `${chapter["content-title"]} - Graphene`;
 
-  //initially: status -> not hidden; app, footer -> hidden
-  $("#status-container").toggleClass("hidden");
-  $("#app-container").toggleClass("hidden");
+    toggle($("#status-container"));
+    toggle($("#app-container"));
 
-  //Set text contents
-  $("#content-title").html(currentChap["content-title"]);
-  $("#theory-content").html(currentChap["theory-content"]);
-  $("#interface-title h4").html(currentChap["interface-title"]);
-  $("#interface-content").html(currentChap["interface-content"]);
-  $("#svg-buttons").html(currentChap["svg-buttons"]);
-  $("#svg-output").html(currentChap["svg-output"]);
+    // Set text contents.
+    $("#content-title").html(chapter["content-title"]);
+    $("#theory-content").html(chapter["theory-content"]);
+    $("#interface-title h4").html(chapter["interface-title"]);
+    $("#interface-content").html(chapter["interface-content"]);
+    $("#controls").html(chapter["controls"]);
+    $("#verdict").html(chapter["verdict"]);
 
-  //set prev
-  if (currentChap.prev) $("#below-app .prev").attr("href", currentChap.prev);
-  else $("#below-app .prev").addClass("hidden");
-  //set next
-  if (currentChap.next) $("#below-app .next").attr("href", currentChap.next);
-  else $("#below-app .next").addClass("hidden");
+    // Set previous chapter.
+    if (chapter.previous) $(".previous").attr("href", chapter.previous);
+    else $(".previous").attr("hidden", true);
 
-  //load app styling
-  $("head").append(
-    '<link href="ch/' + query + "/" + currentChap.style + '" rel="stylesheet">'
-  );
+    // Export vector.
+    $("#extract").on("click", () => jQuery.ajax({
+        success: stylesheet => extract(chapter, stylesheet), async: false, url: `chapters/${query}/${chapter.style}`
+    }));
 
-  //load app script
-  $("body").append(
-    '<script type="text/javascript" src="ch/' +
-      query +
-      "/" +
-      currentChap.script +
-      '"></script>'
-  );
+    // Set next chapter.
+    if (chapter.next) $(".next").attr("href", chapter.next);
+    else $(".next").addClass("hidden");
+
+    // Load application stylesheet.
+    $("head").append(`<link href="chapters/${query}/${chapter.style}" rel="stylesheet">`);
+
+    // Load application script.
+    $("body").append(`<script type="module" src="chapters/${query}/${chapter.script}"></script>`);
+}
+
+function extract(chapter, stylesheet) {
+    const selection = d3.select("#vector");
+    selection.node().textContent = stylesheet;
+    const inner = $("#canvas")[0].innerHTML;
+    const blob = new Blob([inner], { type: "image/svg+xml;charset=utf-8" });
+    const element = document.getElementById("extract");
+    element.href = URL.createObjectURL(blob);
+    element.download = `${chapter.current}-${Date.now()}.svg`;
 }
