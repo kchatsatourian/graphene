@@ -1,0 +1,87 @@
+@media (min-width: 1520px) {
+    .container {
+        width: 1500px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .container {
+        width: 1680px;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    footer .second-bar {
+        text-align: center;
+    }
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    min-width: 640px;
+}
+
+footer {
+    background-color: #272822;
+    color: white;
+    font-size: 14px;
+    line-height: 1.42;
+}
+
+footer .first-bar .row {
+    padding-bottom: 60px;
+    padding-top: 20px;
+}
+
+footer ul {
+    line-height: 1.7;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+footer a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+footer a:focus,
+footer a:hover {
+    text-decoration: underline;
+}
+
+footer .second-bar {
+    background-color: #33373e;
+}
+
+footer .second-bar .row > div {
+    line-height: 40px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+footer .second-bar .logo {
+    border-right: solid 1px #888;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 30px;
+    padding-right: 12px;
+}
+
+footer .second-bar .logo {
+    color: white;
+}
+
+footer .second-bar .social {
+    color: white;
+    font-size: 32px;
+}
+
+footer .second-bar a:hover {
+    text-decoration: none;
+}
+
+footer .second-bar .copyright {
+    padding-left: 8px;
+}
