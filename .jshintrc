@@ -1,14 +1,15 @@
 {
   "esversion": 6,
   "browser": true,
-  "strict": "global",
+  "strict": true,
   "globals": {
-    "univSvgWidth": true,
-    "univSvgHeight": true,
-    "contentData": false,
+    "$": false,
+    "chapters": false,
     "d3": false,
-    "MathJax": false,
+    "debugger": true,
+    "height": true,
     "jQuery": false,
-    "$": false
+    "katex": false,
+    "width": true
   }
 }
