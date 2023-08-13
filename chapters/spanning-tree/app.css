@@ -1,0 +1,67 @@
+#canvas {
+    position: relative;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}
+
+#graph-overlay {
+    display: none;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+#overlay-text {
+    align-items: center;
+    background: #888;
+    color: #fff;
+    display: flex;
+    font-size: 30px;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.edge {
+    cursor: pointer;
+    stroke: #888;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3px;
+}
+
+.edge:hover,
+.line {
+    stroke: #333;
+    stroke-width: 4px;
+}
+
+.vertex {
+    cursor: pointer;
+}
+
+.vertex:hover {
+    opacity: 0.8;
+    stroke: #333;
+}
+
+#problems a {
+    border: 3px solid #ccc;
+    color: #333;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+#problems a.prob-solved {
+    border-color: #2ca02c;
+}
+
+#problems a.prob-current {
+    border-color: #1f77b4 !important;
+}
