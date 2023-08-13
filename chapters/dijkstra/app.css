@@ -1,0 +1,49 @@
+svg {
+    cursor: crosshair;
+    display: block;
+    margin: auto;
+}
+
+.edge {
+    cursor: pointer;
+}
+
+.edge line {
+    stroke: #888;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+}
+
+.edge:hover line,
+.line {
+    stroke: #333;
+    stroke-width: 3px;
+}
+
+.line.hidden {
+    stroke-width: 0;
+}
+
+.vertex {
+    cursor: pointer;
+}
+
+.vertex:hover {
+    opacity: 1;
+    stroke: #333;
+}
+
+.vertex text {
+    font-size: 10px;
+    font-weight: bold;
+    pointer-events: none;
+    stroke: none;
+    text-anchor: middle;
+}
+
+.weight text {
+    font-size: 12px;
+    font-weight: bold;
+    text-anchor: middle;
+}
