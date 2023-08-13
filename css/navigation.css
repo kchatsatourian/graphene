@@ -1,0 +1,47 @@
+nav {
+    border-bottom: 1px solid #ccc;
+    transition: all 0.2s linear;
+}
+
+nav.transparent {
+    background-color: transparent;
+    border-bottom: 0;
+    box-shadow: none;
+}
+
+.navbar-light {
+    background-color: #fff;
+}
+
+.navbar-brand {
+    color: #1f77b4 !important;
+    font-size: 20px;
+}
+
+.transparent .navbar-brand {
+    display: none;
+}
+
+.nav-item {
+    display: inline-block;
+    float: none;
+}
+
+.nav-link {
+    color: #777;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.transparent .nav-link {
+    color: #aaa;
+}
+
+.nav-link:hover {
+    color: #333;
+    text-decoration: none;
+}
+
+.transparent .nav-link:hover {
+    color: #fff;
+}
