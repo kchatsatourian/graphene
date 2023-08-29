@@ -1414,13 +1414,16 @@ const chapters =
 
             "interface-content": `
                 <ul>
-                    <li>To delete an edge <b>right click</b> on it.</li>
+                    <li>To add a vertex <b>left click</b> on whitespace.</li>
+                    <li>To add an edge <b>drag</b> from one vertex to another.</li>
+                    <li>To delete a vertex/edge <b>right click</b> on it.</li>
+                    <li>To move a vertex <b>hold Ctrl and drag</b> it.</li>
+                    <li>To see name of a vertex/edge just <b>hover your cursor</b> on it.</li>
                 </ul>
             `,
 
             "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
+                <button type="button" id="clear-graph" class="btn btn-secondary">Clear All</button>
             `,
 
             "verdict": `
@@ -1471,13 +1474,16 @@ const chapters =
 
             "interface-content": `
                 <ul>
-                    <li>To delete an edge <b>right click</b> on it.</li>
+                    <li>To add a vertex <b>left click</b> on whitespace.</li>
+                    <li>To add an edge <b>drag</b> from one vertex to another.</li>
+                    <li>To delete a vertex/edge <b>right click</b> on it.</li>
+                    <li>To move a vertex <b>hold Ctrl and drag</b> it.</li>
+                    <li>To see name of a vertex/edge just <b>hover your cursor</b> on it.</li>
                 </ul>
             `,
 
             "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
+                <button type="button" id="clear-graph" class="btn btn-secondary">Clear All</button>
             `,
 
             "verdict": `
@@ -1527,13 +1533,16 @@ const chapters =
 
             "interface-content": `
                 <ul>
-                    <li>To delete an edge <b>right click</b> on it.</li>
+                    <li>To add a vertex <b>left click</b> on whitespace.</li>
+                    <li>To add an edge <b>drag</b> from one vertex to another.</li>
+                    <li>To delete a vertex/edge <b>right click</b> on it.</li>
+                    <li>To move a vertex <b>hold Ctrl and drag</b> it.</li>
+                    <li>To see name of a vertex/edge just <b>hover your cursor</b> on it.</li>
                 </ul>
             `,
 
             "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
+                <button type="button" id="clear-graph" class="btn btn-secondary">Clear All</button>
             `,
 
             "verdict": `
@@ -1579,13 +1588,16 @@ const chapters =
 
             "interface-content": `
                 <ul>
-                    <li>To delete an edge <b>right click</b> on it.</li>
+                    <li>To add a vertex <b>left click</b> on whitespace.</li>
+                    <li>To add an edge <b>drag</b> from one vertex to another.</li>
+                    <li>To delete a vertex/edge <b>right click</b> on it.</li>
+                    <li>To move a vertex <b>hold Ctrl and drag</b> it.</li>
+                    <li>To see name of a vertex/edge just <b>hover your cursor</b> on it.</li>
                 </ul>
             `,
 
             "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
+                <button type="button" id="clear-graph" class="btn btn-secondary">Clear All</button>
             `,
 
             "verdict": `
@@ -1630,6 +1642,8 @@ const chapters =
 
             "interface-content": `
                 <ul>
+                    <li>To add a vertex <b>left click</b> on whitespace.</li>
+                    <li>To add an edge <b>drag</b> from one vertex to another.</li>
                     <li>To delete a vertex/edge <b>right click</b> on it.</li>
                     <li>To move a vertex <b>hold Ctrl and drag</b> it.</li>
                     <li>To see name of a vertex/edge just <b>hover your cursor</b> on it.</li>
@@ -1637,8 +1651,7 @@ const chapters =
             `,
 
             "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
+                <button type="button" id="clear-graph" class="btn btn-secondary">Clear All</button>
             `,
 
             "verdict": `
@@ -1682,10 +1695,7 @@ const chapters =
                 </ul>
             `,
 
-            "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
-            `,
+            "controls": ``,
 
             "verdict": `
                 <div class="mt-3 text-center" id="latex"></div>
@@ -1704,13 +1714,6 @@ const chapters =
 
             "theory-content": `
                 <p><b>Pre-order Traversal</b> is a method for traversing or visiting each node in a tree data structure.</p>
-                <ul>
-                    <ol>
-                        <li>Visit the root node.</li>
-                        <li>Visit all the nodes in the left subtree.</li>
-                        <li>Visit all the nodes in the right subtree.</li>
-                    </ol>
-                </ul>
                 <div class="result"><span class="fw-bold result-word">Algorithm:</span>
                     <p></p>
                     <ol>
@@ -1736,10 +1739,7 @@ const chapters =
                 </ul>
             `,
 
-            "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
-            `,
+            "controls": ``,
 
             "verdict": `
                 <div class="mt-3 text-center" id="latex"></div>
@@ -1787,10 +1787,7 @@ const chapters =
                 </ul>
             `,
 
-            "controls": `
-                <button type="button" id="prev-prob" class="btn btn-secondary">Previous</button>
-                <button type="button" id="next-prob" class="btn btn-secondary">Next</button>
-            `,
+            "controls": ``,
 
             "verdict": `
                 <div class="mt-3 text-center" id="latex"></div>
